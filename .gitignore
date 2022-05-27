@@ -1,0 +1,5 @@
+*.*_cache
+pycache
+*.egg-info
+.coverage
+.vscode
