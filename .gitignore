@@ -3,3 +3,5 @@ pycache
 *.egg-info
 .coverage
 .vscode
+.venv
+build
