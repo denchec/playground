@@ -26,7 +26,7 @@ class Query(object):
 			cursor = connection.cursor()
 
 			insert_query = "INSERT INTO message (id, information, status) VALUES (%s, %s, %s)"
-			arguments = [self.id, self.information, self.status]
+			arguments = (self.id, self.information, self.status)
 			cursor.execute(insert_query, arguments)
 			connection.commit()
 			print("Вставили запись")
@@ -40,7 +40,7 @@ class Query(object):
 				connection.close()
 			print("Соединение с PostgreSQL закрыто")
 	
-	def update(id, status):
+	def update(self):
 		try:
 			connection = psycopg2.connect(user = "postgres",
 									password = "1234",
@@ -51,7 +51,7 @@ class Query(object):
 			cursor = connection.cursor()
 
 			update_query = "UPDATE message set status = %s where id values %s"
-			arguments = [self.status, self.id]
+			arguments = (self.status, self.id)
 			cursor.execute(update_query, arguments)
 			connection.commit()
 			count = cursor.rowcount
