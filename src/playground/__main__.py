@@ -1,23 +1,34 @@
-import sys
+import argparse
 
 
-def str_filter(sub_str, text):
-    split_text = text.split("\n")
-    end_text = []
+def parser_func():
+    parser = argparse.ArgumentParser()
+    subparsers = parser.add_subparsers()
+    parser_filter = subparsers.add_parser("filter")
+    parser_filter.add_argument("sub_str")
+    parser_filter.add_argument("file")
+    parser_filter.set_defaults(func=filter_main)
 
-    for i in split_text:
-        if sub_str not in i:
-            end_text.append(i)
+    arguments = parser.parse_args()
 
-    return "\n".join(end_text)
+    return arguments
+
+
+def filter_main(sub_str, file, **_):
+    with open(file, "r", encoding='utf-8') as file:
+        for line in str_filter(sub_str, file):
+            print(line, end="")
+
+
+def str_filter(sub_str, iterable):
+    for line in iterable:
+        if sub_str in line:
+            yield line
 
 
 def main():
-    arguments = sys.argv
-    file = open(arguments[3], "r", encoding='utf-8')
-    file = file.read()
-    if arguments[1] == "filter":
-        print(str_filter(arguments[2], file))
+    arguments = parser_func()
+    arguments.func(**vars(arguments))
 
 
 if __name__ == "__main__":
