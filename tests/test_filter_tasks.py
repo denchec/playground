@@ -16,5 +16,5 @@ def test_str_filter(iterable, sub_str, expected_result):
     (["abc\n", "def\n", "ghi"], ["abc\n", "ghi"], ["def\n"]),
 ])
 def test_on_fail_str_filter(iterable, sub_str, expected_result):
-    with pytest.raises(Exception):
+    with pytest.raises(TypeError):
         assert list(filter_file.str_filter(sub_str, iterable)) == expected_result

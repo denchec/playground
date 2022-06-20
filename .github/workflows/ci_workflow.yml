@@ -3,12 +3,10 @@ name: Python package
 on:
   push:
     branches:
-      - master
+      - test_filter
 
 jobs:
-  production-deploy:
-    if: github.repository == 'denchec/playground'
-
+  unit-tests:
     runs-on: windows-latest
     strategy:
       matrix:
@@ -23,6 +21,6 @@ jobs:
       - name: Install dependencies
         run:
           python -m pip install --upgrade pip setuptools
-          pip install -r requirements.txt
+          pip install -e .[testing]
       - name: Test functions
         run: pytest
