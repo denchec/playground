@@ -22,13 +22,14 @@ def filter_main(sub_str, file, **_):
 
 def str_filter(sub_str, iterable):
     for line in iterable:
-        if sub_str in line:
+        if sub_str not in line:
             yield line
 
 
 def main():
     arguments = parser_func()
     arguments.func(**vars(arguments))
+
 
 if __name__ == "__main__":
     main()
