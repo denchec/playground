@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Условия использования</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        button { padding: 10px 20px; background: #0088cc; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Условия использования бота</h2>
+    <p>1. Вы соглашаетесь с правилами...</p>
+    <p>2. Бот не хранит ваши данные...</p>
+    <p>3. Использование на свой страх и риск.</p>
+
+    <button onclick="acceptTerms()">✅ Я принимаю условия</button>
+
+    <script>
+        function acceptTerms() {
+            // Закрываем WebApp и передаём данные в бота
+            Telegram.WebApp.sendData("user_accepted_terms");
+            Telegram.WebApp.close();
+        }
+    </script>
+</body>
+</html>
